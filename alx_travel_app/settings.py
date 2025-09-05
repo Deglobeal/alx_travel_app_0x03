@@ -58,7 +58,7 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
 ]
 
-ROOT_URLCONF = 'alx_travel_app_0x02.urls'
+ROOT_URLCONF = 'alx_travel_app_0x03.urls'
 
 TEMPLATES = [
     {
@@ -75,7 +75,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'alx_travel_app_0x02.wsgi.application'
+WSGI_APPLICATION = 'alx_travel_app_0x03.wsgi.application'
 
 
 # Database
@@ -135,3 +135,19 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CHAPA_SECRET_KEY = config('CHAPA_SECRET_KEY')
+
+
+# Celery – uses RabbitMQ
+CELERY_BROKER_URL = 'amqp://guest:guest@localhost:5672//'   # default vhost
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+
+# Django email backend (console for quick test)
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# later swap to smtp:
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
+# EMAIL_HOST_USER = config('EMAIL_USER')
+# EMAIL_HOST_PASSWORD = config('EMAIL_PASS')
